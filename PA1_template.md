@@ -275,7 +275,7 @@ activity$daylevel <- daylevel
 activity$daylevel <- factor(activity$daylevel)
 
 stepsByDay <- aggregate(steps ~ interval + daylevel, data = activity, mean)
-names(stepsByDay) <- c("interval", "day_type", "steps")
+names(stepsByDay) <- c("interval", "daylevel", "steps")
 ```
 
 
@@ -286,8 +286,10 @@ something like the following, which was creating using simulated data:
 
 
 ```r
-xyplot(steps ~ interval | daylevel, stepsByDay, type = "l", layout = c(1, 2), 
-    xlab = "Interval", ylab = "Number of steps")
+library(lattice)
+require(lattice)
+xyplot(steps ~ interval | daylevel, data = stepsByDay, type = "l", layout = c(1, 
+    2), xlab = "Interval", ylab = "Number of steps")
 ```
 
 ![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20.png) 
